@@ -20,10 +20,10 @@ const SignUp = () => {
         "/api/auth/signin",
         {
         email,password
-        }, // Corrected variable name
+        },
         {
           headers: {
-            "Content-Type": "application/json", // Corrected header name
+            "Content-Type": "application/json", 
           },
         }
       );
@@ -32,7 +32,7 @@ const SignUp = () => {
         dispatch(signInSuccess(data.data));
         navigate("/home");
       } else {
-        // Handle non-200 status codes if necessary
+        
         setError("Failed to sign in. Please try again.");
       }
     } catch (error) {

@@ -3,20 +3,20 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 
 const AccountBalance = () => {
-  const [balance, setBalance] = useState(0); // State to store balance
+  const [balance, setBalance] = useState(0); 
   const { currentUser } = useSelector((state) => state.user);
 
-  // Function to fetch account balance from API
+  
   const fetchAccountBalance = async () => {
     try {
       const res = await axios.get("/api/user/balance");
-      setBalance(res.data.balance); // Update balance state with fetched data
+      setBalance(res.data.balance); 
     } catch (error) {
       console.error("Error fetching balance:", error);
     }
   };
 
-  // Fetch balance on component mount or when currentUser changes
+ 
   useEffect(() => {
     fetchAccountBalance();
   }, [currentUser]);

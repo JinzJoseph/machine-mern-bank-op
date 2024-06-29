@@ -6,7 +6,7 @@ import { MdBlock } from "react-icons/md";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 const UserDetails = () => {
-  // const [block,setblock]=useState(flas)
+
   const { currentUser } = useSelector((state) => state.user);
   const [users, setUsers] = useState([]);
   const fetchData = async () => {
@@ -35,7 +35,7 @@ console.log(res);
           timer: 1500,
         });
       } else {
-        // Handle other status codes if needed
+     
         Swal.fire({
           icon: "error",
           title: "Oops...",

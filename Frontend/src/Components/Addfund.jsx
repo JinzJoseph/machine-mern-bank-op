@@ -6,7 +6,7 @@ const Addfund = () => {
   const [amount, setAmount] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent the default form submission
+    e.preventDefault();
 
     try {
       const res = await axios.post("/api/user/deposit", {
@@ -24,7 +24,7 @@ const Addfund = () => {
           timer: 1500,
         });
       } else {
-        // Handle other status codes if needed
+       
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -34,7 +34,7 @@ const Addfund = () => {
       setAmount("")
     } catch (error) {
       console.error("Error occurred:", error);
-      // Handle specific errors if necessary
+    
       Swal.fire({
         icon: "error",
         title: "Oops...",

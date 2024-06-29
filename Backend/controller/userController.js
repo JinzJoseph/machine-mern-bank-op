@@ -11,34 +11,32 @@ export const checkBalance = async (req, res) => {
 export const depositAmount = async (req, res) => {
   const { amount } = req.body;
 
-  // Validate and sanitize amount if needed
+ 
 
   try {
-    // Find the user by ID and update the account balance
+    
     const user = await User.findById(req.user.id);
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Update the account balance
     user.accountBalance += amount;
 
-    // Create a new transaction record
+  
     const transaction = new Transaction({
       type: "deposit",
       amount,
       userId: user._id,
     });
 
-    // Push the transaction ID to the user's transactions array
+   
     user.transactions.push(transaction._id);
 
-    // Save the updated user and the new transaction
+   
     await user.save();
     await transaction.save();
 
-    // Respond with success message and updated balance
     res
       .status(200)
       .json({ message: "Deposit successful", balance: user.accountBalance });

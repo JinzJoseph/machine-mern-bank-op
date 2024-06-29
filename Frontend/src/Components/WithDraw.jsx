@@ -9,7 +9,7 @@ const WithDraw = () => {
   const [amount, setAmount] = useState('');
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault(); 
   
     try {
       const res = await axios.put('/api/user/withdraw', {
@@ -26,7 +26,7 @@ const WithDraw = () => {
           timer: 1500,
         });
   
-        fetchAccountBalance(); // Refresh balance after successful withdrawal
+        fetchAccountBalance(); 
         setAmount('');
       } else
        {
@@ -50,7 +50,7 @@ const WithDraw = () => {
   const fetchAccountBalance = async () => {
     try {
       const res = await axios.get('/api/user/balance');
-      setBalance(res.data.balance); // Update balance state with fetched data
+      setBalance(res.data.balance); 
     } catch (error) {
       console.error('Error fetching balance:', error);
     }
@@ -58,7 +58,7 @@ const WithDraw = () => {
 
   useEffect(() => {
     fetchAccountBalance();
-  }, [currentUser]); // Refetch balance when currentUser changes
+  }, [currentUser]);
 
   return (
     <div className="container mx-auto pt-5">

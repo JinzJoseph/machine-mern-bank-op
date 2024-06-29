@@ -23,13 +23,18 @@ const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
-  const role = currentUser.role;
+ 
 
+ 
+    
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const TabFromuRL = urlParams.get("tab");
     console.log(TabFromuRL);
     SetTab(TabFromuRL);
+    if(!currentUser){
+      return  navigate("/signin")
+    }
   }, [location.search]);
 
   const handleSignout = async () => {
@@ -71,8 +76,11 @@ const Home = () => {
       console.log(error.message);
     }
   };
-
-  return (
+if(currentUser.isDisabled===true){
+   alert("Sorry ,Your Account has been blocked ...")
+  navigate("/")
+}
+return (
     <div className="flex h-screen">
       <div className="bg-white h-full p-5 pt-8 relative shadow-lg w-72">
         <div className="flex justify-between items-center mb-6">
@@ -85,6 +93,7 @@ const Home = () => {
           <Link to="/home" className="text-dark-primary font-bold text-xl">
             My Bank
           </Link>
+
         </div>
         <ul className="pt-6">
           <p className="ml-3 text-gray-400 mb-3">Menu</p>

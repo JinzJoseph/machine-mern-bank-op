@@ -2,13 +2,11 @@ import bcrypt from "bcrypt";
 import User from "../models/userModel.js";
 
 import jwt from "jsonwebtoken";
-// not working these route
-//always given axios error saying that failed to sign up
+
 export const signup = async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
-    // Check if the user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).send({
@@ -17,11 +15,11 @@ export const signup = async (req, res) => {
       });
     }
 
-    // Hash the password
+  
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Create a new user
+   
     const newUser = new User({
       username,
       email,
